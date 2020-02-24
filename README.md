@@ -1,5 +1,5 @@
 # 213-hw2.2
-#code to 213 hw 2.2, problem 4
+/*code to 213 hw 2.2, problem 4
 4. Ask for four integer values and one string for file name: one used for upper bound for x coordinate (xu), one for upper bound for y coordinate (yu), and one for number of points (N). Generate N randome points on the cartesian plane (xy) bounded by (0, xu) horizontally and (0, yu) vertically. Also generate an edge bond for each pair of the nodes whose distance is shorter than the threshold (t). Save the result in the text file using the provided file name in following format.
 
 
@@ -24,3 +24,4 @@ index1 index2   distancevalue
 hint: the distance can be calculated using pythogenrean theorm. 
 https://en.wikipedia.org/wiki/Pythagorean_theorem
 https://math.info/Algebra/Distance_Cartesian_Plane/
+*/
