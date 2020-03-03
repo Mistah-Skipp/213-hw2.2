@@ -1,78 +1,56 @@
 # hw 2.3. create a program to display a 2D list formation on screen for each each tictactoe end game saved in a given text file where each end game is represented in a line of one-d array.
 tttable = None
-
 def createboard():
     global tttable
     tttable = list()
-    for i in range (4):
+    for i in range (3):
         row = list()
-        for t in range (4): 
+        for t in range (3): 
             row.append(t)
             tttable.append(row)
-
-    print("____________________")
 #createboard_End
 
-def displayboard():
-    for r in range(0,4):
-        print()
-        for c in range(0,4):
-            print(tttable[r][c], end = " ")
-    print()
+def fillboard(fileName):
+    cnt = 0
+    gameNum =1
+    endGame = open("endgame.txt",'w')
+    print("endGame File Created...")
+    try:#if invalid filename for games, doesnt run
+        with open(fileName) as fileobj:
 
-    print("____________________")
-#displayboard_End
-def fillboard():
-    global tttable
-    for c in range (4):
-        #templist to store games
-        tttable [0][c] = masterList[c]
+            for line in fileobj:  
+                endGame.write("Game {}:\n".format(gameNum) )
+                for ch in line: 
+                    if (ch !='\n'):#while not end of line (new line == new game in text file)
+                        endGame.write(ch)
+                        cnt+=1
+                        if (cnt%3 == 0):#every 3rd index breaks to a new line
+                            endGame.write('\n')
+                    else:
+                        endGame.write("--------------------\n")
+                        gameNum +=1
+    except FileNotFoundError:
+        print("Invalid File Name!")
+
+            
+                    #endgame.write('\n')
+    #tttEnd = open("endgame.txt", "w")
+    #mList = [ttt.readLine()]
+    #with open(str(ttt) ) as games:
+    #    cnt = 0
+    #    for lines in games:
+#
+#            if len(lines.strip()) == 0:
+#                break
+#            cnt+=1
+#            print("line {}: {}".format(cnt,line.strip('\n')))
+            
+
 
 #fillTable_End
 
-
 #Entry_Point
-createboard()
-displayboard()
-ttt = open("test.txt","r")
-#print (ttt.read() )
-#make 2d list, write each game into the list and save to endgame.txt
-tttEnd = open("endgame.txt", "w")#makes endgame.txt and opens writable
-masterList = list(ttt.read())
-print(masterList, ' ')
-displayboard()
-
-print("G1:")
-createboard()
-fillboard()
-displayboard()
-
-print("G2:")
-createboard()
-fillboard()
-displayboard()
-
-
-'''
-def loadGame(gameid):   adapt to 3x3
-    load = open(gameid, 'r')
-    row = 0
-    for rank in load:
-        for col in range (8):
-            chessboard[row][col] = rank[col]
-        row+=1
-        if row == 8:
-            break
-            '''
-
-'''
-temp = ( ttt.read() )
-pos = 0
-for i in temp:
-    print( temp[int(i):3] )
-    if pos%3 == i:
-        print("~~~~~")
-'''
-
-ttt.close()
+fileName = input("Enter tic tac toe file name [include .txt]: ")
+fillboard(fileName)
+print("Finished!")
 #Entry_Point_End
